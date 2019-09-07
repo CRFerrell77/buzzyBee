@@ -10,12 +10,12 @@ const OFFSET_Y           : int = 55
 const AMOUNT_TO_FILL_VIEW: int = 3
 
 func _ready() -> void:
-  var bird: QBird = utils.get_main_node().get_node("bird")
-  if bird:
-    bird.connect("state_changed", self, "_on_bird_state_changed", [], CONNECT_ONESHOT)
+  var bee: B_Bee = utils.get_main_node().get_node("bird")
+  if bee:
+    bee.connect("state_changed", self, "_on_bird_state_changed", [], CONNECT_ONESHOT)
 
-func _on_bird_state_changed(bird: QBird) -> void:
-  if bird.state == bird.STATE_FLAPPING:
+func _on_bird_state_changed(bee: B_Bee) -> void:
+  if bee.state == bee.STATE_FLAPPING:
     start()
 
 func start() -> void:

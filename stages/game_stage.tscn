@@ -36,13 +36,13 @@ const duration : float = 0.18
 const magnitude: int   = 3
 
 func _ready() -> void:
-  var bird: QBird = utils.get_main_node().get_node(\"bird\")
-  if bird: bird.connect(\"state_changed\", self, \"_on_bird_state_changed\")
+  var bee: B_Bee = utils.get_main_node().get_node(\"bird\")
+  if bee: bee.connect(\"state_changed\", self, \"_on_bird_state_changed\")
 
-func _on_bird_state_changed(bird: QBird) -> void:
-  if bird.state == bird.STATE_HIT or bird.state == bird.STATE_GROUNDED:
+func _on_bird_state_changed(bee: B_Bee) -> void:
+  if bee.state == bee.STATE_HIT or bee.state == bee.STATE_GROUNDED:
     shake()
-    bird.disconnect(\"state_changed\", self, \"_on_bird_state_changed\")
+    bee.disconnect(\"state_changed\", self, \"_on_bird_state_changed\")
 
 func shake() -> void:
   var initial_offset: Vector2 = camera.offset
@@ -67,9 +67,9 @@ func _ready() -> void:
   grab_focus()
 
 func _on_pressed() -> void:
-  var bird: QBird = utils.get_main_node().get_node(\"bird\")
-  if bird:
-    bird.state = bird.STATE_FLAPPING
+  var bee: B_Bee = utils.get_main_node().get_node(\"bird\")
+  if bee:
+    bee.state = bee.STATE_FLAPPING
   
   hide()"
 
@@ -91,18 +91,18 @@ const sprite_numbers: Array = [
 
 func _ready() -> void:
   game.connect(\"score_current_changed\", self, \"_on_score_current_changed\")
-  var bird: QBird = utils.get_main_node().get_node(\"bird\")
-  if bird:
-    bird.connect(\"state_changed\", self, \"_on_bird_state_changed\")
+  var bee: B_Bee = utils.get_main_node().get_node(\"bird\")
+  if bee:
+    bee.connect(\"state_changed\", self, \"_on_bird_state_changed\")
   
   set_number(game.score_current)
 
 func _on_score_current_changed() -> void:
   set_number(game.score_current)
 
-func _on_bird_state_changed(bird: QBird) -> void:
-  if bird.state == bird.STATE_HIT     : hide()
-  if bird.state == bird.STATE_GROUNDED: hide()
+func _on_bird_state_changed(bee: B_Bee) -> void:
+  if bee.state == bee.STATE_HIT     : hide()
+  if bee.state == bee.STATE_GROUNDED: hide()
 
 func set_number(number: int) -> void:
   for child in get_children():
@@ -119,16 +119,16 @@ script/source = "extends TextureButton
 func _ready() -> void:
   connect(\"pressed\", self, \"_on_pressed\")
   
-  var bird: QBird = utils.get_main_node().get_node(\"bird\")
-  if bird:
-    bird.connect(\"state_changed\", self, \"_on_bird_state_changed\")
+  var bee: B_Bee = utils.get_main_node().get_node(\"bird\")
+  if bee:
+    bee.connect(\"state_changed\", self, \"_on_bird_state_changed\")
 
 func _on_pressed() -> void:
   get_tree().paused = true
 
-func _on_bird_state_changed(bird: QBird) -> void:
-  if bird.state == bird.STATE_HIT     : hide()
-  if bird.state == bird.STATE_GROUNDED: hide()"
+func _on_bird_state_changed(bee: B_Bee) -> void:
+  if bee.state == bee.STATE_HIT     : hide()
+  if bee.state == bee.STATE_GROUNDED: hide()"
 
 [sub_resource type="GDScript" id=5]
 script/source = "extends Container
@@ -136,12 +136,12 @@ script/source = "extends Container
 func _ready() -> void:
   hide()
   
-  var bird: QBird = utils.get_main_node().get_node(\"bird\")
-  if bird:
-    bird.connect(\"state_changed\", self, \"_on_bird_state_changed\")
+  var bee: B_Bee = utils.get_main_node().get_node(\"bird\")
+  if bee:
+    bee.connect(\"state_changed\", self, \"_on_bird_state_changed\")
 
-func _on_bird_state_changed(bird: QBird) -> void:
-  if bird.get_state() == bird.STATE_GROUNDED:
+func _on_bird_state_changed(bee: B_Bee) -> void:
+  if bee.get_state() == bee.STATE_GROUNDED:
     $anim.play(\"show\")
 "
 

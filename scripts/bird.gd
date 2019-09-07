@@ -1,5 +1,5 @@
 extends RigidBody2D
-class_name QBird, "res://sprites/bird_orange_0.png"
+class_name B_Bee
 
 onready var state setget set_state, get_state
 var prev_state: int
@@ -49,11 +49,12 @@ func get_state() -> int:
   
   return -1
 
-class BirdState:
-  var bird
+class BeeState:
+  var bee
   
-  func _init(bird: QBird) -> void:
-    self.bird = bird
+  func _init(bee: B_Bee) -> void:
+    self.bee = bee
+    bee.get_node("Sprite/AnimationPlayer").play("Idle")
   
   func update(delta: float) -> void:
     pass
@@ -70,32 +71,31 @@ class BirdState:
   func exit() -> void:
     pass
 
-class FlyingState extends BirdState:
+class FlyingState extends BeeState:
   var prev_gravity_scale
   
-  func _init(bird: QBird).(bird) -> void:
-    bird.get_node("anim").play("flying")
-    bird.linear_velocity.x = bird.speed
-    prev_gravity_scale = bird.gravity_scale
-    bird.gravity_scale = 0
+  func _init(bee: B_Bee).(bee) -> void:
+    bee.linear_velocity.x = bee.speed
+    prev_gravity_scale = bee.gravity_scale
+    bee.gravity_scale = 0
   
   func exit() -> void:
-    bird.gravity_scale = prev_gravity_scale
-    bird.get_node("anim").stop()
-    bird.get_node("anim_sprite").position = Vector2(0, 0)
+    bee.gravity_scale = prev_gravity_scale
+    bee.get_node("Sprite/AnimationPlayer").stop()
+    bee.get_node("Sprite").position = Vector2(0, 0)
 
-class FlappingState extends BirdState:
-  func _init(bird: QBird).(bird) -> void:
-    bird.linear_velocity.x = bird.speed
+class FlappingState extends BeeState:
+  func _init(bee: B_Bee).(bee) -> void:
+    bee.linear_velocity.x = bee.speed
     flap()
   
   func update(delta: float) -> void:
-    if bird.rotation_degrees < -30:
-      bird.rotation_degrees = -30
-      bird.angular_velocity = 0
+    if bee.rotation_degrees < -30:
+      bee.rotation_degrees = -30
+      bee.angular_velocity = 0
     
-    if bird.linear_velocity.y > 0:
-      bird.angular_velocity = 1.5
+    if bee.linear_velocity.y > 0:
+      bee.angular_velocity = 1.5
   
   func input(event: InputEvent) -> void:
     if event.is_action_pressed("flap"):
@@ -109,35 +109,33 @@ class FlappingState extends BirdState:
       flap()
   
   func on_body_entered(other_body: Node):
-    if   other_body.is_in_group(game.GROUP_PIPES)  : bird.state = bird.STATE_HIT
-    elif other_body.is_in_group(game.GROUP_GROUNDS): bird.state = bird.STATE_GROUNDED
+    if   other_body.is_in_group(game.GROUP_PIPES)  : bee.state = bee.STATE_HIT
+    elif other_body.is_in_group(game.GROUP_GROUNDS): bee.state = bee.STATE_GROUNDED
   
   func flap() -> void:
-    bird.linear_velocity.y = -150
-    bird.angular_velocity = -3
-    bird.get_node("anim").play("flap")
-    
+    bee.linear_velocity.y = -150
+    bee.angular_velocity = -3
     audio_player.get_node("sfx_wing").play()
 
-class HitState extends BirdState:
-  func _init(bird: QBird).(bird) -> void:
-    bird.linear_velocity = Vector2(0,0)
-    bird.angular_velocity = 2
+class HitState extends BeeState:
+  func _init(bee: B_Bee).(bee) -> void:
+    bee.linear_velocity = Vector2(0,0)
+    bee.angular_velocity = 2
     
-    var other_body = bird.get_colliding_bodies()[0]
-    bird.add_collision_exception_with(other_body)
+    var other_body = bee.get_colliding_bodies()[0]
+    bee.add_collision_exception_with(other_body)
     
     audio_player.get_node("sfx_hit").play()
     audio_player.get_node("sfx_die").play()
   
   func on_body_entered(other_body: Node):
     if other_body.is_in_group(game.GROUP_GROUNDS):
-      bird.state = bird.STATE_GROUNDED
+      bee.state = bee.STATE_GROUNDED
 
-class GroundedState extends BirdState:
-  func _init(bird: QBird).(bird) -> void:
-    bird.linear_velocity = Vector2(0,0)
-    bird.angular_velocity = 0
+class GroundedState extends BeeState:
+  func _init(bee: B_Bee).(bee) -> void:
+    bee.linear_velocity = Vector2(0,0)
+    bee.angular_velocity = 0
     
-    if bird.prev_state != bird.STATE_HIT:
+    if bee.prev_state != bee.STATE_HIT:
       audio_player.get_node("sfx_hit").play()

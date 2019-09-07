@@ -10,7 +10,7 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "RigidBody2D",
-"class": "QBird",
+"class": "B_Bee",
 "language": "GDScript",
 "path": "res://scripts/bird.gd"
 }, {
@@ -45,7 +45,7 @@ _global_script_classes=[ {
 "path": "res://scripts/spawner_pipe.gd"
 } ]
 _global_script_class_icons={
-"QBird": "",
+"B_Bee": "",
 "QCamera": "",
 "QCoin": "",
 "QGround": "",

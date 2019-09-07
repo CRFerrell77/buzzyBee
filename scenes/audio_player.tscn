@@ -7,6 +7,7 @@
 [ext_resource path="res://sounds/sfx_wing.wav" type="AudioStream" id=5]
 
 [node name="audio_player" type="Node"]
+editor/display_folded = true
 
 [node name="sfx_die" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
