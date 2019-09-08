@@ -115,7 +115,7 @@ class FlappingState extends BeeState:
   func flap() -> void:
     bee.linear_velocity.y = -150
     bee.angular_velocity = -3
-    audio_player.get_node("sfx_wing").play()
+    audio_player.get_node("sfx_buzz").play()
 
 class HitState extends BeeState:
   func _init(bee: B_Bee).(bee) -> void:
@@ -125,8 +125,7 @@ class HitState extends BeeState:
     var other_body = bee.get_colliding_bodies()[0]
     bee.add_collision_exception_with(other_body)
     
-    audio_player.get_node("sfx_hit").play()
-    audio_player.get_node("sfx_die").play()
+    audio_player.get_node("sfx_dead").play()
   
   func on_body_entered(other_body: Node):
     if other_body.is_in_group(game.GROUP_GROUNDS):
@@ -138,4 +137,4 @@ class GroundedState extends BeeState:
     bee.angular_velocity = 0
     
     if bee.prev_state != bee.STATE_HIT:
-      audio_player.get_node("sfx_hit").play()
+      audio_player.get_node("sfx_dead").play()

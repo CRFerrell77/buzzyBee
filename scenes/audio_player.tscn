@@ -1,13 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://sounds/sfx_die.wav" type="AudioStream" id=1]
 [ext_resource path="res://sounds/sfx_hit.wav" type="AudioStream" id=2]
 [ext_resource path="res://sounds/sfx_point.wav" type="AudioStream" id=3]
 [ext_resource path="res://sounds/sfx_swooshing.wav" type="AudioStream" id=4]
 [ext_resource path="res://sounds/sfx_wing.wav" type="AudioStream" id=5]
+[ext_resource path="res://sounds/sfx_buzz.wav" type="AudioStream" id=6]
+[ext_resource path="res://sounds/sfx_dead.wav" type="AudioStream" id=7]
+[ext_resource path="res://sounds/sfx_score.wav" type="AudioStream" id=8]
+[ext_resource path="res://sounds/sdtk_SJ_MapleLeafRag.wav" type="AudioStream" id=9]
+[ext_resource path="res://sounds/sdtk_SJ_PineappleRag.wav" type="AudioStream" id=10]
+[ext_resource path="res://sounds/sdtk_SJ_RagTimeDance.wav" type="AudioStream" id=11]
+[ext_resource path="res://sounds/sfx_slWhistle.wav" type="AudioStream" id=12]
 
 [node name="audio_player" type="Node"]
-editor/display_folded = true
 
 [node name="sfx_die" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
@@ -23,3 +29,24 @@ stream = ExtResource( 4 )
 
 [node name="sfx_wing" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+
+[node name="sfx_buzz" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="sfx_dead" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="sfx_score" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[node name="sdtk_SJ_MapleLeafRag" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[node name="sdtk_SJ_PineappleRag" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="sdtk_SJ_RagTimeDance" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[node name="sfx_slWhistle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )

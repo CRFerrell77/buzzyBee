@@ -485,6 +485,7 @@ texture_normal = ExtResource( 8 )
 script = SubResource( 5 )
 
 [node name="cntr_gameover" type="Container" parent="hud"]
+editor/display_folded = true
 visible = false
 margin_right = 144.0
 margin_bottom = 256.0

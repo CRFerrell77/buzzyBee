@@ -40,6 +40,7 @@ position = Vector2( 72, 110.358 )
 [node name="background" parent="." instance=ExtResource( 4 )]
 
 [node name="hud" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="tex_quackybird" type="TextureRect" parent="hud"]
 margin_left = 28.0
