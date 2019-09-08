@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sdtk_SJ_MapleLeafRag.wav-b7e1285f21a805b589e28caee7bf4280.sample"
+
+[deps]
+
+source_file="res://sounds/sdtk_SJ_MapleLeafRag.wav"
+dest_files=[ "res://.import/sdtk_SJ_MapleLeafRag.wav-b7e1285f21a805b589e28caee7bf4280.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
