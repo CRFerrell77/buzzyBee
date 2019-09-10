@@ -18,6 +18,8 @@ signal score_current_changed
 func _ready() -> void:
   stage_manager.connect("stage_changed", self, "_on_stage_changed")
   in_game_music()
+#  _on_finished()
+
 
 func _on_stage_changed() -> void:
   score_current = 0
@@ -34,4 +36,9 @@ func _set_score_current(new_value: int) -> void:
 func in_game_music():
 	audio_player.get_node("sdtk_SJ_MapleLeafRag").play()
 	pass
+	
+#var SONGS : PoolStringArray = [audio_player.get_node("../sounds/sdtk_SJ_MapleLeafRag"), audio_player.get_node("..sounds/sdtk_SJ_RagTimeDance"), audio_player.get_node("../sounds/sdtk_SJ_PineappleRag")]
+#func _on_finished():
+#    var stream = SONGS[rand_range(0, SONGS.size())]
+#    stream.play()
 	
