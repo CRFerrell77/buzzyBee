@@ -34,7 +34,7 @@ func _set_score_current(new_value: int) -> void:
   emit_signal("score_current_changed")
 
 func in_game_music():
-	audio_player.get_node("sdtk_SJ_MapleLeafRag").play()
+	audio_player.get_node("background_music").play()
 	pass
 	
 #var SONGS : PoolStringArray = [audio_player.get_node("../sounds/sdtk_SJ_MapleLeafRag"), audio_player.get_node("..sounds/sdtk_SJ_RagTimeDance"), audio_player.get_node("../sounds/sdtk_SJ_PineappleRag")]
