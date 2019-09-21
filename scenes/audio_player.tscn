@@ -9,9 +9,9 @@
 [ext_resource path="res://sounds/sfx_dead.wav" type="AudioStream" id=7]
 [ext_resource path="res://sounds/sfx_score.wav" type="AudioStream" id=8]
 [ext_resource path="res://sounds/sfx_slWhistle.wav" type="AudioStream" id=9]
-[ext_resource path="res://scripts/background_music.gd" type="Script" id=10]
-[ext_resource path="res://sounds/sdtk_SJ_RagTimeDance.wav" type="AudioStream" id=11]
-[ext_resource path="res://sounds/sdtk_SJ_PineappleRag.wav" type="AudioStream" id=12]
+[ext_resource path="res://sounds/sdtk_SJ_PineappleRag.wav" type="AudioStream" id=10]
+[ext_resource path="res://scripts/background_music.gd" type="Script" id=11]
+[ext_resource path="res://sounds/sdtk_SJ_RagTimeDance.wav" type="AudioStream" id=12]
 [ext_resource path="res://sounds/sdtk_SJ_MapleLeafRag.wav" type="AudioStream" id=13]
 
 [node name="audio_player" type="Node"]
@@ -43,8 +43,12 @@ stream = ExtResource( 8 )
 
 [node name="sfx_slWhistle" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
+volume_db = -9.0
 
 [node name="background_music" type="AudioStreamPlayer" parent="."]
-script = ExtResource( 10 )
-queue_mode = 1
-playlist = [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ]
+stream = ExtResource( 10 )
+autoplay = true
+script = ExtResource( 11 )
+queue_mode = 2
+playlist = [ ExtResource( 12 ), ExtResource( 10 ), ExtResource( 13 ) ]
+[connection signal="finished" from="background_music" to="background_music" method="_on_background_music_finished"]

@@ -40,10 +40,13 @@ func _get_next_random_mode():
 # Gets the next stream in a randomized list of size playlist.size()
 # When the list is exhausted it is reshuffled
 func _get_next_shuffle_mode():
+	print("get next shuffle")
 	playlist_index += 1
+	print("Playlist_index: %s" % playlist_index)
 	if playlist_index >= playlist.size():
 		shuffled_indices.shuffle()
 		playlist_index = 0
+	print(playlist[shuffled_indices[playlist_index]])
 	return playlist[shuffled_indices[playlist_index]]
 	pass
 	
@@ -70,3 +73,9 @@ func _set_playlist(plist):
 	
 func _get_playlist():
 	return playlist
+
+
+func _on_background_music_finished():
+	get_next_stream()
+	.play()
+	pass # Replace with function body.
